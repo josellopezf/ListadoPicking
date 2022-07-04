@@ -1,0 +1,131 @@
+<mvc:View controllerName="SCO.BTP.ListadoPicking.controller.MainView" 
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true" 
+    xmlns:core="sap.ui.core"
+    xmlns:t="sap.ui.table"
+    xmlns:custom="SCO.BTP.ListadoPicking.custom-elements"
+    xmlns="sap.m">
+    <Page showHeader="false">
+        <subHeader>
+            <Toolbar id="filters">
+                <Label class="sapUiSmallMarginBegin" text="Buscar materiales por: "/>
+                <Select
+                        forceSelection="false"
+                        selectedKey="{/filters/sortBy}"
+                        items="{
+                            path: '/filters/sortByOptions'
+                        }">
+                    <core:Item key="{key}" text="{text}" />
+                </Select>
+                <Input  width="15rem" value="{
+                                                path : '/filters/query',
+                                                type : 'sap.ui.model.type.Integer'
+                                            }" type="Text" placeholder="Ingrese {= ${/filters/sortBy}==='I_AUFNR'?'Nº Orden':'Nº Reserva' }"
+                       submit="handleSearch"
+                       />
+                <Button text="Buscar" press="handleSearch" icon="sap-icon://search"/>
+            </Toolbar>
+        </subHeader>
+        <content>
+            <MessageStrip
+                    text="Solo se desplegarán las posiciones de los almacenes a los que ud. tiene acceso: {/allowedWarehousesText}."
+                    showIcon="true"
+                    class="sapUiSmallMargin">
+            </MessageStrip>
+            <custom:RowDisableableTable id="mainTable" visibleRowCountMode="Auto"
+                                        title="Materiales" threshold="5"
+                                        class="sapUiSmallMargin" rows="{/materiales}" selectionMode="None">
+                <custom:noData>
+                    <Text textAlign="Center" class="sapUiTableCtrlEmptyMsg"
+                            text="Sin materiales para mostrar"/>
+                </custom:noData>
+                <custom:rowSettingsTemplate>
+                    <custom:RowDisableableRowSettings selectable="{= ${TYPE} !== 'E' || ${NUMBER} === '264' }"/>
+                </custom:rowSettingsTemplate>
+                <custom:columns>
+                    <t:Column width="5rem">
+                        <Label text="Material"/>
+                        <t:template>
+                            <Text text="{MATNR}"/>
+                        </t:template>
+                    </t:Column>
+                    <t:Column width="12rem">
+                        <Label text="Descripción del Material"/>
+                        <t:template>
+                            <Text text="{MAKTX}" wrapping="false"/>
+                        </t:template>
+                    </t:Column>
+                    <t:Column width="8rem">
+                        <Label text="Cant. Necesaria"/>
+                        <t:template>
+                            <Text text="{BDMNG}"/>
+                        </t:template>
+                    </t:Column>
+                    <t:Column width="7rem">
+                        <Label text="Cant. Tomada"/>
+                        <t:template>
+                            <Text text="{ENMNG}"/>
+                        </t:template>
+                    </t:Column>
+                    <t:Column width="8rem">
+                        <Label text="Cant. Pendiente"/>
+                        <t:template>
+                            <Input editable="{= ${TYPE} !== 'E' || ${NUMBER} === '264' }" value="{
+                                                                                                    path : 'ERFMG'
+                                                                                                }"/>
+                        </t:template>
+                    </t:Column>
+                    <t:Column width="3rem">
+                        <Label text="UME"/>
+                        <t:template>
+                            <Text text="{ERFME}"/>
+                        </t:template>
+                    </t:Column>
+                    <t:Column width="4rem">
+                        <Label text="Centro"/>
+                        <t:template>
+                            <Text text="{WERKS_D}"/>
+                        </t:template>
+                    </t:Column>
+                    <t:Column width="5rem">
+                        <Label text="Almacén"/>
+                        <t:template>
+                            <Text text="{LGORT_D}"/>
+                        </t:template>
+                    </t:Column>
+                    <t:Column hAlign="Center" width="2.5rem">
+                        <core:Icon src="sap-icon://message-information"/>
+                        <t:template>
+                            <core:Icon color="red" src="{
+                                                            path: 'TYPE',
+                                                            formatter: '.formatAvailableToIcon'
+                                                        }"/>
+                        </t:template>
+                    </t:Column>
+                    <t:Column autoResizable="true">
+                        <Label text="Mensaje"/>
+                        <t:template>
+                            <Text wrapping="false" text="{MESSAGE}"/>
+                        </t:template>
+                    </t:Column>
+                </custom:columns>
+            </custom:RowDisableableTable>
+        </content>
+        <footer>
+            <Toolbar>
+                <Button
+                        id="errorPopover"
+                        icon="sap-icon://message-popup"
+                        visible="{= ${message>/}.length > 0}"
+                        text="{= ${message>/}.length}"
+                        type="Emphasized"
+                        press="handleMessagePopoverPress"/>
+                <ToolbarSpacer/>
+                <Button
+                        icon="sap-icon://accept"
+                        text="Contabilizar picking"
+                        type="Emphasized"
+                        press="handleContabilizar"/>
+            </Toolbar>
+        </footer>
+    </Page>
+</mvc:View>
