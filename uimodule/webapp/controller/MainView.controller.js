@@ -7,7 +7,7 @@ sap.ui.define([
     "sap/m/Button",
     "SCO/BTP/ListadoPicking/utils/validator",
     "../lib/jsPDF-1.3.2/dist/jspdf.min",
-    "../lib/jsPDF-AutoTable-2.3.2/dist/jspdf.plugin.autotable"    
+    "../lib/jsPDF-AutoTable-2.3.2/dist/jspdf.plugin.autotable.min"    
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      * @param {typeof sap.ui.model.json.JSONModel} JSONModel
