@@ -342,38 +342,35 @@ Jose Lopez*/
                 doc.text(75, 35, 'Receptor:');
                 doc.text(95, 35, `${header.E_COD_RECEPTOR} ${header.E_TXT_RECEPTOR}`);   
     
-//                var columns = [ ["Cod Sap", "Nombre", "Vale", "Fecha", "Almacén", "Cant.\nSolicitada", "U.M", "Cant.\nEntreg"] ];
-                var columns = [ ["Cod Sap", "Nombre", "Vale", "Fecha", "Almacén", "Cant.", "U.M", "Cant."] ];
+                var columns = [ ["Cod Sap", "Nombre", "Vale", "Fecha", "Almacén", "Cant.\nSolicitada", "U.M", "Cant.\nEntreg"] ];
+//                var columns = [ ["Cod Sap", "Nombre", "Vale", "Fecha", "Almacén", "Cant.", "U.M", "Cant."] ];
                 rows = rows.map((r) => [r.MATNR, r.MAKTX, r.RSNUM, now.toLocaleString("es-ES"), r.LGORT_D, r.BDMNG, r.ERFME, r.ERFMG]);
-
-                var head = [['ID', 'Country', 'Rank', 'Capital']];
-                var body = [
-                  [1, 'Denmark', 7.526, 'Copenhagen'],
-                  [2, 'Switzerland', 7.509, 'Bern'],
-                  [3, 'Iceland', 7.501, 'Reykjavík'],
-                ];
-                
-                doc.autoTable({ head: columns, body: rows, columnStyles: {
-                    1: {halign: 'left'}
-                },
-                styles: {
-                    lineWidth: 0.1,
-                    lineColor: 0,
-                    fontSize: 6,
-                    cellPadding: 1,
-                    halign: 'center',
-                },
-                headerStyles: {
-                    fontSize: 9,
-                    lineColor: 0,
-                    fillColor: 245,
-                    textColor: 0,
-                    halign: 'center',
-                    valign: 'middle',
-                },
-                startY: 60,
-                margin: {bottom: 44, right: 5, left: 5},
-                theme: 'plain'});                
+              
+                doc.autoTable({ 
+                    head: columns, 
+                    body: rows, 
+                    columnStyles: {
+                        1: {halign: 'left'}
+                    },
+                    styles: {
+                        lineWidth: 0.1,
+                        lineColor: 0,
+                        fontSize: 6,
+                        cellPadding: 1,
+                        halign: 'center',
+                    },
+                    headerStyles: {
+                        fontSize: 9,
+                        lineColor: 0,
+                        fillColor: 245,
+                        textColor: 0,
+                        halign: 'center',
+                        valign: 'middle',
+                    },
+                    startY: 60,
+                    margin: {bottom: 44, right: 5, left: 5},
+                    theme: 'plain'
+                });                
 
                 doc.setDrawColor(0);
     
