@@ -1,6 +1,7 @@
 node_modules/
 .idea/
 .mta/
+dist/
 *.mtar
 package-lock.json
 mta_archives/
