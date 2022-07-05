@@ -313,7 +313,7 @@ Jose Lopez*/
                 
                 var now = new Date();
     
-                doc.addImage(logo, 'JPEG', 5, 5);
+//                doc.addImage(logo, 'JPEG', 5, 5);
                 doc.setFontSize(20);
                 doc.text(90, 10, 'PICKING');
                 doc.setFontSize(9);
@@ -375,31 +375,6 @@ Jose Lopez*/
                 margin: {bottom: 44, right: 5, left: 5},
                 theme: 'plain'});                
 
-                /*                
-                doc.autoTable(columns, rows, {
-                    columnStyles: {
-                        1: {halign: 'left'}
-                    },
-                    styles: {
-                        lineWidth: 0.1,
-                        lineColor: 0,
-                        fontSize: 6,
-                        cellPadding: 1,
-                        halign: 'center',
-                    },
-                    headerStyles: {
-                        fontSize: 9,
-                        lineColor: 0,
-                        fillColor: 245,
-                        textColor: 0,
-                        halign: 'center',
-                        valign: 'middle',
-                    },
-                    startY: 60,
-                    margin: {bottom: 44, right: 5, left: 5},
-                    theme: 'plain'
-                });
-*/    
                 doc.setDrawColor(0);
     
                 doc.lines([[50, 0]], 34, 247);
