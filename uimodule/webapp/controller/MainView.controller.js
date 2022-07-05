@@ -343,7 +343,6 @@ Jose Lopez*/
                 doc.text(95, 35, `${header.E_COD_RECEPTOR} ${header.E_TXT_RECEPTOR}`);   
     
                 var columns = [ ["Cod Sap", "Nombre", "Vale", "Fecha", "Almacén", "Cant.\nSolicitada", "U.M", "Cant.\nEntreg"] ];
-//                var columns = [ ["Cod Sap", "Nombre", "Vale", "Fecha", "Almacén", "Cant.", "U.M", "Cant."] ];
                 rows = rows.map((r) => [r.MATNR, r.MAKTX, r.RSNUM, now.toLocaleString("es-ES"), r.LGORT_D, r.BDMNG, r.ERFME, r.ERFMG]);
               
                 doc.autoTable({ 
